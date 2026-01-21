@@ -1,0 +1,340 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/LogoSkyTrail.png";
+import instagramIcon from "../assets/instagram1.png";
+import menuIcon from "../assets/MenuLogo.svg";
+---
+
+<header class="navbar">
+    <div class="nav-left">
+        <button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">
+            <Image src={menuIcon} alt="Menú" width={28} height={28} />
+        </button>
+
+        <div class="social-icons">
+            <a
+                href="https://instagram.com/tuusuario"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+                <Image src={instagramIcon} alt="Instagram" width={28} />
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-logo">
+        <Image src={logo} alt="Logo SkyTrail" width={160} />
+    </div>
+
+    <button class="btn-inscripcion">INSCRÍBETE AQUÍ</button>
+</header>
+
+<nav class="mobile-menu" id="mobile-menu">
+    <div class="menu-header">
+        <div class="menu-logo-container">
+            <Image src={logo} alt="Logo SkyTrail" width={159} />
+        </div>
+        <button class="close-btn" id="close-menu" aria-label="Cerrar menú">
+            &times;
+        </button>
+    </div>
+
+    <div class="menu-body">
+        <ul>
+            <li><a href="/" data-text="Inicio">Inicio</a></li>
+            <li><a href="/evento" data-text="Evento">Evento</a></li>
+            <li><a href="/galeria" data-text="Galería">Galería</a></li>
+            <li><a href="/contacto" data-text="Contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <div class="menu-footer">
+        <p>SKY TRAIL 2026</p>
+    </div>
+</nav>
+<script src="/src/scripts/menu.js" defer></script>
+
+<style>
+    /* --- ESTRUCTURA PRINCIPAL --- */
+
+    :root {
+        --neon-green: white;
+        --bg-transparent: transparent;
+        --bg-verde: white;
+        --bg-black: black;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        height: 80px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        background: transparent;
+        color: white;
+
+        z-index: 10;
+    }
+
+    /* --- LADO IZQUIERDO --- */
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .menu-toggle {
+        background: var(--neon-green);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: black;
+    }
+
+    .social-icons a {
+        color: var(--neon-green);
+        font-size: 1.2rem;
+        margin-right: 10px;
+        text-decoration: none;
+    }
+
+    /* --- CENTRO (LOGO) --- */
+    .nav-logo {
+        text-align: center;
+        line-height: 0.8;
+    }
+    .nav-logo small {
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+    }
+
+    .nav-logo h1 {
+        margin: 0;
+        font-style: italic;
+        font-size: 2.5rem;
+    }
+
+    /* --- DERECHA (BOTÓN) --- */
+    .btn-inscripcion {
+        color: var(--neon-green);
+        color: black;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    /* El efecto de brillo que atraviesa el botón */
+    .btn-inscripcion::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent
+        );
+        transition: all 0.6s;
+    }
+
+    .btn-inscripcion:hover {
+        background: #e5ffaa; /* Un verde más brillante */
+        transform: translateY(-3px) scale(1.02);
+        box-shadow:
+            0 10px 20px rgba(161, 3, 3, 0.3),
+            0 0 20px rgba(255, 112, 112, 0.6);
+        color: #000;
+    }
+
+    /* Activamos el brillo al hacer hover */
+    .btn-inscripcion:hover::before {
+        left: 100%;
+    }
+
+    .btn-inscripcion:hover .arrow-wrapper {
+        transform: translateX(5px);
+    }
+
+    /* ESTILOS MENU HAMBURGUESA */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Totalmente oculto a la izquierda */
+        width: 100%; /* Ocupa toda la pantalla en móvil */
+        height: 100vh; /* Altura completa */
+        background-color: rgba(0, 0, 0, 0.96); /* Fondo casi negro */
+        backdrop-filter: blur(15px); /* Efecto vidrio borroso profesional */
+        z-index: 2000; /* Muy por encima de todo */
+        transition: left 0.5s cubic-bezier(0.85, 0, 0.15, 1); /* Animación suave estilo Apple */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    /* Clase para abrir */
+    .mobile-menu.open {
+        left: 0;
+    }
+
+    /* --- CABECERA (LOGO + X) --- */
+    .menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: #42dad9; /* Tu verde neón */
+        font-size: 3rem;
+        line-height: 0.5;
+        cursor: pointer;
+        transition: transform 0.3s;
+        padding: 10px;
+    }
+
+    .close-btn:hover {
+        transform: rotate(90deg); /* La X gira al pasar el mouse */
+        color: white;
+    }
+
+    /* --- CUERPO Y ENLACES --- */
+    .menu-body {
+        flex: 1; /* Ocupa el espacio restante */
+        display: flex;
+        align-items: center; /* Centrado vertical */
+        justify-content: center; /* Centrado horizontal */
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .mobile-menu a {
+        position: relative;
+        color: white;
+        text-decoration: none;
+        font-size: 2.5rem; /* Texto grande "Pro" */
+        font-weight: 900;
+        text-transform: uppercase;
+        font-family: "Arial Black", sans-serif;
+        letter-spacing: 2px;
+        transition: color 0.3s;
+        display: inline-block;
+        /* Opacidad inicial para la animación */
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 0.4s;
+    }
+
+    /* Efecto Hover: Relleno de texto transparente con borde (Outline) */
+    .mobile-menu a:hover {
+        color: transparent;
+        -webkit-text-stroke: 1px #42dad9; /* Borde verde neón */
+    }
+
+    /* --- ANIMACIÓN EN CASCADA (STAGGER) --- */
+    /* Cuando el menú está abierto, los links suben y aparecen */
+    .mobile-menu.open a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Retraso para cada link para que no salgan todos a la vez */
+    .mobile-menu.open li:nth-child(1) a {
+        transition-delay: 0.1s;
+    }
+    .mobile-menu.open li:nth-child(2) a {
+        transition-delay: 0.3s;
+    }
+    .mobile-menu.open li:nth-child(3) a {
+        transition-delay: 0.4s;
+    }
+    .mobile-menu.open li:nth-child(4) a {
+        transition-delay: 0.5s;
+    }
+
+    /* --- FOOTER --- */
+    .menu-footer {
+        padding: 20px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* //////////////////////*/
+
+    /* --- RESPONSIVO (TELÉFONO) --- */
+    @media (max-width: 768px) {
+        .btn-inscripcion {
+            display: none;
+        }
+        .arrow {
+            display: none;
+        }
+        /* Ocultamos redes en móvil para dar espacio */
+        .nav-logo h1 {
+            font-size: 1.8rem;
+        }
+        .btn-inscrit {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+    }
+    /* --- RESPONSIVE PC --- */
+    /* En pantallas grandes, hacemos que salga solo de un lado como un panel lateral */
+    @media (min-width: 769px) {
+        .mobile-menu {
+            width: 450px; /* Ancho fijo en PC */
+            border-right: 2px solid #42dad9;
+        }
+
+        .menu-body {
+            align-items: flex-start; /* Alinear a la izquierda en PC */
+            padding-left: 40px;
+        }
+
+        .mobile-menu ul {
+            text-align: left;
+        }
+    }
+</style>

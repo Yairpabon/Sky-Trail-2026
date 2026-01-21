@@ -1,0 +1,18 @@
+---
+import Contador from "../components/Contador.astro";
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Hero from "../components/Hero.astro";
+import Carrusel from "../components/CarruselDePatrocinadores.astro";
+---
+
+<Layout class="hero-wrapper">
+	<Menu />
+	<Contador fecha="2026-04-26T23:59:59" />
+	<Carrusel />
+	<Hero />
+</Layout>
+
+<main>
+	<slot />
+</main>

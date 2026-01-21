@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "../assets/LogoSkyTrail.png";
+import sponsor1 from "../assets/LogoSkyTrail.png";
+import sponsor2 from "../assets/LogoSkyTrail.png";
+import sponsor3 from "../assets/LogoSkyTrail.png";
+import sponsor4 from "../assets/LogoSkyTrail.png";
+import sponsor5 from "../assets/LogoSkyTrail.png";
+
+const sponsors = [
+    { src: logo, alt: "SkyTrail" },
+    { src: sponsor1, alt: "Sponsor 1" },
+    { src: sponsor2, alt: "Sponsor 2" },
+    { src: sponsor3, alt: "Sponsor 3" },
+    { src: sponsor4, alt: "Sponsor 4" },
+    { src: sponsor5, alt: "Sponsor 5" },
+];
+---
+
+<div class="wrapper">
+    <div class="slider">
+        <!-- Primera fila -->
+        <div class="slide">
+            {
+                sponsors.map((item) => (
+                    <Image src={item.src} alt={item.alt} height={70} />
+                ))
+            }
+        </div>
+
+        <!-- Duplicado para loop infinito -->
+        <div class="slide">
+            {
+                sponsors.map((item) => (
+                    <Image src={item.src} alt={item.alt} height={70} />
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* CONTENEDOR */
+    .slider {
+        height: 100px;
+        background: black;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+    }
+
+    /* CARRIL */
+    .slide {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: scroll 25s linear infinite;
+    }
+
+    /* PAUSA AL HOVER */
+    .slider:hover .slide {
+        animation-play-state: paused;
+    }
+
+    /* IMÁGENES */
+    .slide :global(img) {
+        height: 100px;
+        margin: 0 32px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.8;
+        transition: 0.3s ease;
+    }
+
+    /* EFECTO SUAVE */
+    .slide :global(img:hover) {
+        filter: grayscale(0);
+        opacity: 1;
+    }
+
+    /* ANIMACIÓN */
+    @keyframes scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* SOMBRAS LATERALES */
+    .slider::before,
+    .slider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 120px;
+        height: 100%;
+        z-index: 2;
+    }
+
+    .slider::before {
+        left: 0;
+        background: linear-gradient(to right, #42dad9, transparent);
+    }
+
+    .slider::after {
+        right: 0;
+        background: linear-gradient(to left, #42dad9, transparent);
+    }
+
+    /* 📱 RESPONSIVE */
+    @media (max-width: 768px) {
+        .slider {
+            height: 80px;
+        }
+
+        .slide :global(img) {
+            height: 100px;
+            margin: 0 18px;
+        }
+    }
+</style>
