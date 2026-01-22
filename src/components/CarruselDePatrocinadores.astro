@@ -24,7 +24,7 @@ const sponsors = [
         <div class="slide">
             {
                 sponsors.map((item) => (
-                    <Image src={item.src} alt={item.alt} height={70} />
+                    <Image src={item.src} alt={item.alt} height={100} />
                 ))
             }
         </div>
@@ -33,7 +33,7 @@ const sponsors = [
         <div class="slide">
             {
                 sponsors.map((item) => (
-                    <Image src={item.src} alt={item.alt} height={70} />
+                    <Image src={item.src} alt={item.alt} height={100} />
                 ))
             }
         </div>
@@ -60,7 +60,7 @@ const sponsors = [
         display: flex;
         align-items: center;
         width: max-content;
-        animation: scroll 25s linear infinite;
+        animation: scroll 7s linear infinite;
     }
 
     /* PAUSA AL HOVER */
@@ -73,7 +73,6 @@ const sponsors = [
         height: 100px;
         margin: 0 32px;
         object-fit: contain;
-        filter: grayscale(100%);
         opacity: 0.8;
         transition: 0.3s ease;
     }
@@ -100,7 +99,7 @@ const sponsors = [
         content: "";
         position: absolute;
         top: 0;
-        width: 120px;
+        width: 80px;
         height: 100%;
         z-index: 2;
     }

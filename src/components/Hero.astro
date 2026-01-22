@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import Ejemplo from "../assets/FotoCorredores.png";
+import logo from "../assets/SkyTrail_Negro.png";
+---
+
+<section class="hero">
+    <div class="hero-text">
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi
+            voluptatibus iste saepe sapiente animi. Consequatur, esse,
+            dignissimos recusandae culpa unde sit eos ad minus suscipit
+            perferendis labore totam ullam.
+        </p>
+
+        <button class="inscribirse">Inscríbete aquí</button>
+    </div>
+
+    <div class="hero-media">
+        <div class="media-wrapper">
+            <Image src={Ejemplo} alt="Imagen evento" />
+        </div>
+
+        <div class="hero-logo">
+            <Image src={logo} alt="Logo SkyTrail" />
+        </div>
+    </div>
+</section>
+
+<style>
+    .media-wrapper,
+    .hero-logo,
+    .hero-text {
+        transition: transform 0.1s linear;
+        will-change: transform;
+    }
+
+    .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 40px;
+        padding: 0 0 0 80px;
+        background: #fff;
+        color: #000;
+        align-items: center;
+    }
+
+    /* TEXTO */
+    .hero-text {
+        max-width: 520px;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    /* BOTÓN */
+    .inscribirse {
+        padding: 14px 28px;
+        background: #06ffff;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    /* MEDIA */
+    .hero-media {
+        position: relative;
+    }
+
+    /* STICKY para interacción con scroll */
+    .media-wrapper {
+        position: sticky;
+        top: 120px;
+        border-radius: 16px;
+        overflow: hidden;
+        transform: translateY(40px);
+        transition: transform 0.6s ease;
+    }
+
+    /* IMAGEN */
+    .media-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        background: linear-gradient(to right, #06ffff, transparent);
+    }
+
+    /* LOGO SOBRE LA IMAGEN */
+    .hero-logo {
+        position: absolute;
+        top: 70px;
+        left: -50%;
+        z-index: 2;
+    }
+
+    .hero-logo img {
+        width: 600px;
+        height: 100%;
+    }
+
+    /* EFECTO SCROLL SIN JS (cuando el contenedor entra en vista) */
+    .hero:hover .media-wrapper {
+        transform: translateY(0);
+    }
+
+    /* ===========================
+   📱 MOBILE
+=========================== */
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr;
+            padding: 50px 20px;
+        }
+
+        .hero-text {
+            order: 1;
+        }
+
+        .hero-media {
+            order: 2;
+        }
+
+        .hero-logo {
+            left: 20%;
+            top: 5px;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .hero-logo img {
+            width: 500px;
+        }
+    }
+</style>
