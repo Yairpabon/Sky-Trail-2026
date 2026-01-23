@@ -1,0 +1,454 @@
+---
+import { Image } from "astro:assets";
+
+/* ======================
+   ICONOS KIT BÁSICO
+====================== */
+import Bolsa from "../assets/medalla-de-oro.png";
+import Medalla from "../assets/medalla-de-oro.png";
+import Camisa from "../assets/medalla-de-oro.png";
+import Chip from "../assets/medalla-de-oro.png";
+import Agua from "../assets/medalla-de-oro.png";
+import Fruta from "../assets/medalla-de-oro.png";
+import Medica from "../assets/medalla-de-oro.png";
+import Policia from "../assets/medalla-de-oro.png";
+import Transito from "../assets/medalla-de-oro.png";
+import Juzgamiento from "../assets/medalla-de-oro.png";
+import Cafe from "../assets/medalla-de-oro.png";
+import Seguro from "../assets/medalla-de-oro.png";
+import Rifas from "../assets/medalla-de-oro.png";
+import Descuento from "../assets/medalla-de-oro.png";
+
+/* ======================
+   ICONOS VIP
+====================== */
+import Masoterapia from "../assets/medalla-de-oro.png";
+import Brunch from "../assets/medalla-de-oro.png";
+import Vip from "../assets/medalla-de-oro.png";
+import Hidroterapia from "../assets/medalla-de-oro.png";
+import Drink from "../assets/medalla-de-oro.png";
+import Lancha from "../assets/medalla-de-oro.png";
+
+/* ======================
+   DATA
+====================== */
+const basicKit = [
+    { text: "Bolsa conmemorativa biodegradable", icon: Bolsa },
+    { text: "Medalla de participación", icon: Medalla },
+    { text: "Camisa oficial del evento", icon: Camisa },
+    { text: "Número con chip de cronometraje", icon: Chip },
+    { text: "Hidratación", icon: Agua },
+    { text: "Fruta", icon: Fruta },
+    { text: "Asistencia médica", icon: Medica },
+    { text: "Asistencia policial", icon: Policia },
+    { text: "Asistencia de tránsito", icon: Transito },
+    {
+        text: "Juzgamiento por Liga de Atletismo del Magdalena",
+        icon: Juzgamiento,
+    },
+    { text: "Café Estrella", icon: Cafe },
+    { text: "Seguro del competidor", icon: Seguro },
+    { text: "Rifas", icon: Rifas },
+    {
+        text: "Bonos de descuento en Estrella del Mar y Biciteca",
+        icon: Descuento,
+    },
+];
+
+const vipKit = [
+    { text: "Todo lo incluido en el kit básico", icon: Vip },
+    { text: "Masoterapia", icon: Masoterapia },
+    { text: "Brunch", icon: Brunch },
+    { text: "BetPlay - Zona VIP", icon: Vip },
+    { text: "Hidroterapia", icon: Hidroterapia },
+    { text: "Zona Drink", icon: Drink },
+    { text: "Regreso en taxi marino o lancha", icon: Lancha },
+];
+---
+
+<section class="kit-section">
+    <div class="kit-overlay"></div>
+
+    <div class="kit-container">
+        <!-- ======================
+             PLAN BÁSICO
+        ======================= -->
+        <article class="kit-card basic">
+            <h3>Inscripción Básica</h3>
+
+            <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">80.000</span>
+                <span class="label">COP</span>
+            </div>
+
+            <ul class="kit-list">
+                {
+                    basicKit.map((item) => (
+                        <li>
+                            <Image src={item.icon} alt={item.text} width={24} />
+                            <span>{item.text}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <button class="btn basic-btn">Elegir plan</button>
+        </article>
+
+        <!-- ======================
+             PLAN VIP
+        ======================= -->
+        <article class="kit-card vip">
+            <h3>Inscripción VIP</h3>
+
+            <div class="price highlight">
+                <span class="currency">$</span>
+                <span class="amount">200.000</span>
+                <span class="label">COP</span>
+            </div>
+
+            <ul class="kit-list vip">
+                {
+                    vipKit.map((item) => (
+                        <li>
+                            <Image src={item.icon} alt={item.text} width={24} />
+                            <span>{item.text}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <button class="btn vip-btn">Elegir plan VIP</button>
+        </article>
+    </div>
+    <section class="cta-section">
+        <div class="cta-container">
+            <p class="cta-intro">
+                Llegó el momento de disfrutar tu pasión en una carrera que te
+                ofrece experiencias nuevas y momentos únicos.
+            </p>
+
+            <p class="cta-text">
+                Queremos que compartas con nosotros, tu familia y todos aquellos
+                que vibran con este deporte. Que explotes de felicidad haciendo
+                lo que más te gusta y que lo hagas con la tranquilidad de correr
+                con todos los parámetros de seguridad, llevando tu experiencia
+                al límite.
+            </p>
+
+            <p class="cta-highlight">
+                NO DEJES QUE TE LO CUENTEN – INSCRÍBETE YA!!!
+            </p>
+
+            <div class="cta-actions">
+                <button class="cta-secondary">Únete al parche</button>
+                <button class="cta-primary">Inscríbete</button>
+            </div>
+        </div>
+    </section>
+</section>
+
+<style>
+    /* ===============================
+   🎨 VARIABLES
+================================ */
+    :root {
+        --accent: #06ffff;
+        --dark: #000;
+        --light: #fff;
+    }
+
+    /* ===============================
+   🌄 SECCIÓN
+================================ */
+    .kit-section {
+        position: relative;
+        padding: 140px 80px;
+        background-image: url("../assets/FondoDeEjemplo.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .kit-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+    }
+
+    /* ===============================
+   📦 CONTENEDOR
+================================ */
+    .kit-container {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* ===============================
+   🧾 TARJETAS
+================================ */
+    .kit-card {
+        border: 2px solid var(--light);
+        padding: 50px;
+        color: var(--light);
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        transform: translateY(60px);
+        animation: fadeUp 0.9s ease forwards;
+    }
+
+    .kit-card.vip {
+        border-color: var(--accent);
+        box-shadow: 0 0 40px rgba(6, 255, 255, 0.25);
+        animation-delay: 0.2s;
+    }
+
+    /* ===============================
+   🏷️ TÍTULO
+================================ */
+    .kit-card h3 {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    /* ===============================
+   💰 PRECIO
+================================ */
+    .price {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-bottom: 30px;
+    }
+
+    .price .currency {
+        font-size: 1.2rem;
+    }
+
+    .price .amount {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    .price .label {
+        font-size: 0.8rem;
+    }
+
+    /* ===============================
+   📋 LISTA
+================================ */
+    .kit-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px;
+        font-family: "Zalando Sans SemiExpanded", sans-serif;
+    }
+
+    .kit-list li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .kit-list span {
+        font-size: 0.95rem;
+    }
+    .kit-list img {
+        filter: drop-shadow(0 0 6px rgba(6, 255, 255, 0.6));
+    }
+
+    .kit-card.vip .kit-list img {
+        filter: drop-shadow(0 0 8px rgba(6, 255, 255, 0.9));
+    }
+
+    /* ===============================
+   🔘 BOTONES
+================================ */
+    .btn {
+        width: 100%;
+        padding: 14px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Zalando Sans SemiExpanded", sans-serif;
+    }
+
+    .basic-btn {
+        background: var(--light);
+        color: var(--dark);
+    }
+
+    .basic-btn:hover {
+        background: var(--accent);
+    }
+
+    .vip-btn {
+        background: var(--accent);
+        color: var(--dark);
+        box-shadow: 0 0 20px rgba(6, 255, 255, 0.6);
+    }
+
+    .vip-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 35px rgba(6, 255, 255, 0.9);
+    }
+    /* ===============================
+   🔥 CTA SECTION
+================================ */
+    .cta-section {
+        color: #fff;
+        padding: 140px 20px;
+        position: relative;
+        z-index: 2;
+        font-family: "Zalando Sans SemiExpanded", sans-serif;
+    }
+
+    /* línea decorativa superior */
+    .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 20;
+        left: 50%;
+        width: 120px;
+        height: 3px;
+        background: #06ffff;
+        transform: translateX(-50%);
+    }
+
+    /* contenedor */
+    .cta-container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Texto principal */
+    .cta-intro {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        color: #ffffff;
+    }
+
+    /* Texto descriptivo */
+    .cta-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        opacity: 0.9;
+        margin-bottom: 45px;
+    }
+
+    /* Frase fuerte */
+    .cta-highlight {
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        color: #06ffff;
+        margin-bottom: 55px;
+    }
+
+    /* Botones */
+    .cta-actions {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        flex-wrap: wrap;
+    }
+
+    .cta-actions button {
+        padding: 15px 34px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Botón secundario */
+    .cta-secondary {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+    }
+
+    .cta-secondary:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    /* Botón principal */
+    .cta-primary {
+        background: #06ffff;
+        color: #000;
+        box-shadow: 0 0 25px rgba(6, 255, 255, 0.6);
+    }
+
+    .cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 40px rgba(6, 255, 255, 0.9);
+    }
+
+    /* ===============================
+   📱 MOBILE
+================================ */
+    @media (max-width: 768px) {
+        .cta-section {
+            padding: 100px 20px;
+        }
+
+        .cta-intro {
+            font-size: 1.25rem;
+        }
+
+        .cta-highlight {
+            font-size: 1rem;
+        }
+    }
+
+    /* ===============================
+   ✨ ANIMACIÓN
+================================ */
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ===============================
+   📱 MOBILE
+================================ */
+    @media (max-width: 768px) {
+        .kit-section {
+            padding: 100px 20px;
+            background-attachment: scroll;
+        }
+
+        .kit-container {
+            grid-template-columns: 1fr;
+        }
+
+        .kit-card.vip {
+            order: 1;
+        }
+
+        .kit-card.basic {
+            order: 2;
+        }
+    }
+</style>
